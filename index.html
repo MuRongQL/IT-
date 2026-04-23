@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="专业服务价格表 - UE5场景搭建、PPT制作、视频剪辑、电脑美化、Steam代注册。透明定价，品质保障。">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>服务价格表 | 透明定价</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --text-primary: #ffffff;
+            --text-secondary: #8b8b9a;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --accent-ue5: #a855f7;
+            --accent-ppt: #f59e0b;
+            --accent-video: #f43f5e;
+            --accent-computer: #3b82f6;
+            --accent-steam: #22c55e;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .bg-decoration {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+        }
+
+        .bg-orb-1 {
+            width: min(600px, 80vw);
+            height: min(600px, 80vw);
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+            top: -10%; right: -10%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .bg-orb-2 {
+            width: min(500px, 70vw);
+            height: min(500px, 70vw);
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, transparent 70%);
+            bottom: -10%; left: -10%;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(3vw, -3vw); }
+            66% { transform: translate(-2vw, 2vw); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: clamp(32px, 8vw, 80px) clamp(16px, 4vw, 48px) clamp(48px, 10vw, 100px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: clamp(40px, 10vw, 80px);
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: clamp(16px, 4vw, 24px);
+            flex-wrap: wrap;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-badge-dot {
+            width: 8px; height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .admin-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 100px;
+            color: #a855f7;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .admin-link:hover {
+            background: rgba(168, 85, 247, 0.2);
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: clamp(10px, 2vw, 16px);
+            background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: clamp(0.9rem, 2.5vw, 1.125rem);
+            color: var(--text-secondary);
+        }
+
+        .category { margin-bottom: clamp(40px, 10vw, 64px); }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: clamp(12px, 3vw, 20px);
+            margin-bottom: clamp(20px, 5vw, 32px);
+            flex-wrap: wrap;
+        }
+
+        .category-icon {
+            width: clamp(44px, 10vw, 56px);
+            height: clamp(44px, 10vw, 56px);
+            border-radius: clamp(12px, 3vw, 16px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .category-icon i { font-size: clamp(1.25rem, 4vw, 1.75rem); color: white; }
+
+        .category-icon.ue5 { background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%); }
+        .category-icon.ppt { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); }
+        .category-icon.video { background: linear-gradient(135deg, #fb7185 0%, #f43f5e 100%); }
+        .category-icon.computer { background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%); }
+        .category-icon.steam { background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%); }
+
+        .category-info h2 { font-size: clamp(1.1rem, 4vw, 1.5rem); font-weight: 700; margin-bottom: 4px; }
+        .category-info p { font-size: clamp(0.8rem, 2vw, 0.9rem); color: var(--text-secondary); }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+            gap: clamp(12px, 2vw, 16px);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: clamp(20px, 5vw, 28px);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: clamp(14px, 3vw, 20px);
+            flex-wrap: wrap;
+        }
+
+        .card h3 {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .card-tag {
+            padding: 4px 10px;
+            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .card .price {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .card.ue5 .price { color: var(--accent-ue5); }
+        .card.ppt .price { color: var(--accent-ppt); }
+        .card.video .price { color: var(--accent-video); }
+        .card.computer .price { color: var(--accent-computer); }
+        .card.steam .price { color: var(--accent-steam); }
+
+        .card .note { font-size: clamp(0.8rem, 2vw, 0.85rem); color: var(--text-secondary); }
+
+        .card-arrow {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 32px; height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .rules {
+            margin-top: clamp(48px, 12vw, 80px);
+            padding: clamp(24px, 6vw, 48px);
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 28px;
+            backdrop-filter: blur(20px);
+        }
+
+        .rules-header { text-align: center; margin-bottom: clamp(24px, 6vw, 40px); }
+        .rules-header h2 { font-size: clamp(1.25rem, 4vw, 1.75rem); font-weight: 700; margin-bottom: 8px; }
+        .rules-header p { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+            gap: clamp(12px, 3vw, 20px);
+        }
+
+        .rule-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: clamp(14px, 3.5vw, 18px) clamp(16px, 4vw, 22px);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .rule-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .rule-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .rule-icon i { font-size: 1.25rem; color: #22c55e; }
+        .rule-text { font-size: 0.95rem; color: var(--text-primary); }
+
+        .footer {
+            text-align: center;
+            margin-top: clamp(40px, 10vw, 64px);
+            padding-top: clamp(32px, 8vw, 48px);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .footer p { color: var(--text-secondary); font-size: 0.9rem; }
+
+        /* ========== 详情模态框 ========== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal {
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow: hidden;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            position: relative;
+            padding: 32px 32px 24px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .modal-category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .modal-category-badge.ue5 { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+        .modal-category-badge.ppt { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+        .modal-category-badge.video { background: rgba(244, 63, 94, 0.15); color: #f43f5e; }
+        .modal-category-badge.computer { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+        .modal-category-badge.steam { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+
+        .modal-category-badge i { font-size: 1rem; }
+
+        .modal-header h2 {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .modal-header .modal-price {
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            font-weight: 800;
+        }
+
+        .modal-header.ue5 .modal-price { color: #a855f7; }
+        .modal-header.ppt .modal-price { color: #f59e0b; }
+        .modal-header.video .modal-price { color: #f43f5e; }
+        .modal-header.computer .modal-price { color: #3b82f6; }
+        .modal-header.steam .modal-price { color: #22c55e; }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px; height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            border-radius: 12px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 24px 32px 32px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .modal-section {
+            margin-bottom: 28px;
+        }
+
+        .modal-section:last-child { margin-bottom: 0; }
+
+        .modal-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .modal-section h3 i { font-size: 1.1rem; }
+
+        .modal-desc {
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .modal-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .modal-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .modal-feature i {
+            font-size: 1.25rem;
+            color: #22c55e;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .modal-feature span {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .modal-tips {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal-tip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .modal-tip i {
+            font-size: 1rem;
+            color: var(--warning);
+        }
+
+        .modal-footer {
+            padding: 20px 32px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
+        }
+
+        .btn-primary.wechat-btn {
+            background: linear-gradient(135deg, #07c160 0%, #06ad56 100%);
+        }
+
+        .btn-primary.wechat-btn:hover {
+            box-shadow: 0 10px 30px rgba(7, 193, 96, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 480px) {
+            .modal-header { padding: 24px 20px 20px; }
+            .modal-body { padding: 20px; }
+            .modal-footer { padding: 16px 20px; flex-direction: column; }
+        }
+
+        @media (hover: none) {
+            .card:hover {
+                transform: none;
+                background: var(--bg-card);
+                box-shadow: none;
+            }
+            .card:active {
+                background: var(--bg-card-hover);
+                transform: scale(0.98);
+            }
+            .card-arrow { display: none; }
+        }
+        /* 微信联系弹窗样式 */
+        .wechat-modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 2000;
+        }
+
+        .wechat-modal.active {
+            display: flex;
+        }
+
+        .wechat-content {
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            padding: clamp(32px, 8vw, 48px);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid var(--border-subtle);
+            animation: modalPop 0.3s ease;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .wechat-icon {
+            width: 80px; height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #07c160 0%, #06ad56 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wechat-icon i { font-size: 2.5rem; color: white; }
+
+        .wechat-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .wechat-content p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .wechat-id-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            margin-bottom: 24px;
+        }
+
+        .wechat-id-box span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'SF Mono', 'Consolas', monospace;
+            color: #07c160;
+            letter-spacing: 0.1em;
+        }
+
+        .wechat-id-box button {
+            padding: 8px 16px;
+            background: #07c160;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .wechat-id-box button:hover {
+            background: #06ad56;
+            transform: translateY(-2px);
+        }
+
+        .wechat-tips {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .wechat-tip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .wechat-tip i { color: #07c160; }
+
+        .wechat-close {
+            width: 100%;
+            padding: 14px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .wechat-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .copy-toast {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #07c160;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 100px;
+            font-weight: 600;
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .copy-toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="header-actions">
+                <div class="header-badge">
+                    <span class="header-badge-dot"></span>
+                    <span>服务价格透明 · 品质有保障</span>
+                </div>
+            </div>
+            <h1>服务价格表</h1>
+            <p>专业团队 · 高效交付 · 售后无忧</p>
+        </div>
+
+        <div id="content"></div>
+
+        <div class="rules" id="rulesSection">
+            <div class="rules-header">
+                <h2>通用规则</h2>
+                <p>下单前请仔细阅读</p>
+            </div>
+            <div class="rules-grid" id="rulesGrid"></div>
+        </div>
+
+        <div class="footer">
+            <p>如有疑问，请联系客服咨询详细报价</p>
+        </div>
+    </div>
+
+    <!-- 微信联系弹窗 -->
+    <div class="wechat-modal" id="wechatModal">
+        <div class="wechat-content">
+            <div class="wechat-icon">
+                <i class="ph-fill ph-wechat-logo"></i>
+            </div>
+            <h3>添加客服微信</h3>
+            <p>长按复制微信号，粘贴到微信搜索添加好友</p>
+            <div class="wechat-id-box">
+                <span id="wechatId">19283479117</span>
+                <button onclick="copyWechatId()">
+                    <i class="ph ph-copy"></i>
+                    复制
+                </button>
+            </div>
+            <div class="wechat-tips">
+                <div class="wechat-tip">
+                    <i class="ph ph-lightning"></i>
+                    <span>备注「价格表」，快速响应</span>
+                </div>
+                <div class="wechat-tip">
+                    <i class="ph ph-clock"></i>
+                    <span>工作时间内 30 分钟内回复</span>
+                </div>
+            </div>
+            <button class="wechat-close" onclick="closeWechatModal()">知道了</button>
+        </div>
+    </div>
+
+    <!-- 复制成功提示 -->
+    <div class="copy-toast" id="copyToast">
+        <i class="ph ph-check-circle"></i>
+        微信号已复制
+    </div>
+
+    <!-- 详情模态框 -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal">
+            <div class="modal-header" id="modalHeader">
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="ph ph-x"></i>
+                </button>
+                <div class="modal-category-badge" id="modalCategoryBadge">
+                    <i class="ph-fill" id="modalCategoryIcon"></i>
+                    <span id="modalCategoryName"></span>
+                </div>
+                <h2 id="modalTitle"></h2>
+                <div class="modal-price" id="modalPrice"></div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section" id="modalDescSection">
+                    <h3><i class="ph ph-info"></i> 服务介绍</h3>
+                    <p class="modal-desc" id="modalDesc"></p>
+                </div>
+                <div class="modal-section" id="modalFeaturesSection">
+                    <h3><i class="ph ph-check-circle"></i> 包含内容</h3>
+                    <div class="modal-features" id="modalFeatures"></div>
+                </div>
+                <div class="modal-section" id="modalTipsSection">
+                    <h3><i class="ph ph-lightning"></i> 注意事项</h3>
+                    <div class="modal-tips" id="modalTips"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">
+                    <i class="ph ph-arrow-left"></i>
+                    返回
+                </button>
+                <button class="btn btn-primary wechat-btn" onclick="contactUs()">
+                    <i class="ph-fill ph-wechat-logo"></i>
+                    微信咨询
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'priceListData';
+
+        const defaultData = {
+            ue5: [
+                {
+                    name: '简单室内 / 小场景',
+                    price: '¥80–150',
+                    note: '新手入门级场景搭建',
+                    hot: false,
+                    desc: '适合入门级 UE5 场景制作，包含简单的室内环境搭建，如小型房间、店铺、办公室等基础室内场景。',
+                    features: ['基础室内模型搭建', '基础材质贴图', '简单灯光布置', '基础相机设置', '可导出项目文件'],
+                    tips: ['如需高精度模型，费用另计', '复杂地形或大面积场景价格上浮', '可提供多种风格选择']
+                },
+                {
+                    name: '室外简易场景 / 小地图',
+                    price: '¥150–260',
+                    note: '含地形、植被、简单物件',
+                    hot: false,
+                    desc: '适合制作小规模室外场景或游戏小地图，包含地形编辑、基础植被、简单建筑等元素。',
+                    features: ['地形编辑与 sculpting', '基础植被系统', '简单建筑模型', '天气效果设置', '性能优化'],
+                    tips: ['大面积地图按比例加价', '复杂植被需额外收费', '支持多种风格定制']
+                },
+                {
+                    name: '场景微调 / 换材质灯光',
+                    price: '¥50–100',
+                    note: '调整现有场景效果',
+                    hot: false,
+                    desc: '对已有 UE5 场景进行视觉效果优化，包括材质更换、灯光调整、色调校正等后期处理。',
+                    features: ['材质效果优化', '灯光氛围调整', '色调与色彩校正', '细节修补', '效果预览'],
+                    tips: ['大范围调整费用上浮', '特殊材质另计', '修改次数有限']
+                },
+                {
+                    name: '24 小时加急',
+                    price: '×1.5',
+                    note: '紧急项目优先处理',
+                    hot: true,
+                    desc: '加急服务，确保 24 小时内完成交付。适合紧急需求，项目将优先处理。',
+                    features: ['24 小时交付', '优先排队处理', '专属客服对接', '无限次修改确认'],
+                    tips: ['需提前沟通确认', '复杂项目可能延长', '加急费需预付']
+                }
+            ],
+            ppt: [
+                {
+                    name: '纯文字排版（10 页内）',
+                    price: '¥25–40',
+                    note: '简洁大方的文字排版',
+                    hot: false,
+                    desc: '提供简洁专业的文字排版服务，适合内容为主、不需要复杂设计的演示文稿。',
+                    features: ['专业字体搭配', '合理留白设计', '层次分明排版', '统一视觉风格', '可打印格式'],
+                    tips: ['超过10页按加页计费', '需提供文字内容', '可调整排版风格']
+                },
+                {
+                    name: '模板美化（10–20 页）',
+                    price: '¥40–80',
+                    note: '专业模板设计',
+                    hot: false,
+                    desc: '使用精心设计的专业模板，提供更丰富的视觉呈现效果。',
+                    features: ['精选模板选择', '配色方案定制', '图表元素添加', '动画效果设置', '品牌元素融入'],
+                    tips: ['可指定模板风格', '超出页数加收费用', '提供 2 次免费修改']
+                },
+                {
+                    name: '工作 / 汇报 / 答辩 PPT',
+                    price: '¥80–150',
+                    note: '高端定制，专业呈现',
+                    hot: false,
+                    desc: '高端定制服务，适合正式场合使用，包含专业设计、动画效果、演讲者注释等。',
+                    features: ['高端定制设计', '专业动画效果', '演讲者注释', '过渡动画', '一键全屏播放'],
+                    tips: ['包含完整演讲流程', '可加急处理', '提供源文件']
+                },
+                {
+                    name: '加页',
+                    price: '¥3–8 / 页',
+                    note: '超出基础页数额外计费',
+                    hot: false,
+                    desc: '在基础套餐上增加页面内容，费用根据页面复杂程度浮动。',
+                    features: ['按需添加页面', '风格统一延续', '内容编排优化'],
+                    tips: ['简单页面 ¥3/页', '复杂页面 ¥8/页', '一次性加10页以上享优惠']
+                }
+            ],
+            video: [
+                {
+                    name: '基础短视频（15–60 秒）',
+                    price: '¥30–60',
+                    note: '简单剪辑，基础调色',
+                    hot: false,
+                    desc: '适合简单的视频剪辑需求，如短视频拼接、基础调色等。',
+                    features: ['视频片段剪辑', '基础调色', '简单转场', '音频导入', '输出格式设置'],
+                    tips: ['超出时长按比例加价', '需提供素材', '交付格式可选']
+                },
+                {
+                    name: '口播 / 生活 / 探店',
+                    price: '¥60–120',
+                    note: '剪 + 字幕 + 转场',
+                    hot: false,
+                    desc: '适合 Vlog、口播、探店等生活类视频，包含字幕、转场、配乐等完整后期。',
+                    features: ['专业剪辑', '自动/手动字幕', '转场效果', '背景音乐', '片头片尾', '封面设计'],
+                    tips: ['含字幕制作', '可加配音/音效', '支持多平台尺寸']
+                },
+                {
+                    name: '带货 / 简单剧情短片',
+                    price: '¥90–180',
+                    note: '专业包装，效果更佳',
+                    hot: false,
+                    desc: '适合带货视频或简单剧情短片，包含专业包装、字幕、配音等全套服务。',
+                    features: ['脚本策划建议', '分镜设计', '专业调色', '特效包装', '字幕配音', '产品/剧情亮点突出'],
+                    tips: ['复杂特效另计', '脚本需客户确认', '可提供多个版本']
+                },
+                {
+                    name: '婚礼 / 活动快剪',
+                    price: '¥150–300',
+                    note: '精彩瞬间记录',
+                    hot: false,
+                    desc: '婚礼、活动现场的精彩瞬间快剪，包含精剪、配乐、字幕等完整后期。',
+                    features: ['精彩片段筛选', '情感节奏把控', '专业调色', '背景音乐', '字幕特效', '交付高清成品'],
+                    tips: ['按活动时长计价', '含背景音乐版权', '可加急当天交付']
+                },
+                {
+                    name: '当天加急',
+                    price: '+50%',
+                    note: '紧急交付项目',
+                    hot: true,
+                    desc: '紧急视频项目，当天交付。适合临时需要快速出片的场景。',
+                    features: ['当天交付', '优先处理', '全程加急'],
+                    tips: ['需上午11点前下单', '复杂项目可能延至次日', '加急费需全额预付']
+                }
+            ],
+            computer: [
+                {
+                    name: '系统重装 / 重置',
+                    price: '¥30–50',
+                    note: '全新系统安装',
+                    hot: false,
+                    desc: '全新安装 Windows 系统，包含驱动安装、系统激活、基础软件等。',
+                    features: ['系统全新安装', '官方原版镜像', '驱动安装调试', '系统激活', '基础软件安装', '数据迁移（如需要）'],
+                    tips: ['不含系统费用', '需备份重要数据', '支持双系统']
+                },
+                {
+                    name: '桌面美化 / 主题图标',
+                    price: '¥20–40',
+                    note: '个性化桌面定制',
+                    hot: false,
+                    desc: '个性化桌面主题定制，包括壁纸、图标、任务栏、字体等全套美化。',
+                    features: ['精选壁纸资源', '图标包替换', '任务栏美化', '透明任务栏', '定制字体', '桌面小部件'],
+                    tips: ['可选主题风格', '可混合多种风格', '提供还原方案']
+                },
+                {
+                    name: '驱动修复 / 软件安装',
+                    price: '¥20–35',
+                    note: '驱动更新，软件部署',
+                    hot: false,
+                    desc: '解决驱动问题，安装常用软件，确保系统稳定运行。',
+                    features: ['驱动检测更新', '问题驱动修复', '常用软件安装', '软件激活', '系统优化'],
+                    tips: ['不含付费软件', '软件需客户提供', '可远程协助']
+                },
+                {
+                    name: '清理优化 / 提速',
+                    price: '¥15–25',
+                    note: '系统清理，性能提升',
+                    hot: false,
+                    desc: '全面清理系统垃圾，优化启动项，提升电脑运行速度。',
+                    features: ['磁盘清理', '注册表优化', '启动项管理', '散热清洁', '开机速度优化', '系统体检报告'],
+                    tips: ['不破坏原有数据', '可远程操作', '效果不满意不收费']
+                }
+            ],
+            steam: [
+                {
+                    name: '代注册账号',
+                    price: '¥10–20',
+                    note: '快速注册，即开即用',
+                    hot: false,
+                    desc: '快速帮您注册 Steam 账号，绑定安全手机，即刻开始游戏之旅。',
+                    features: ['账号注册', '邮箱绑定', '安全手机绑定', '初始设置指导'],
+                    tips: ['需提供有效邮箱', '不含游戏购买', '账号归属权归买家']
+                },
+                {
+                    name: '注册 + 邮箱绑定 + 安全设置',
+                    price: '¥20–30',
+                    note: '一站式完成，安全无忧',
+                    hot: false,
+                    desc: '完整注册 Steam 账号，包含全面的安全设置，保障账号安全。',
+                    features: ['完整账号注册', '邮箱绑定', '安全手机绑定', '两步验证设置', '密码强度优化', '安全令牌配置'],
+                    tips: ['包含安全教学', '账号安全等级最高', '长期售后保障']
+                }
+            ],
+            rules: [
+                '免费修改 2 次，超出另计费',
+                '素材 / 资料 / 账号信息客户提供',
+                '支持预览，确认后收尾款',
+                '加急单上浮 30%–50%'
+            ]
+        };
+
+        const categoryConfig = {
+            ue5: { name: 'UE5.7 场景搭建', subtitle: '虚幻引擎5专业场景制作', icon: 'ph-game-controller' },
+            ppt: { name: 'PPT 制作', subtitle: '专业演示文稿设计', icon: 'ph-presentation-chart' },
+            video: { name: '视频剪辑', subtitle: '创意视频制作服务', icon: 'ph-film-reel' },
+            computer: { name: '电脑美化 / 系统重置', subtitle: '系统维护与个性化定制', icon: 'ph-desktop' },
+            steam: { name: 'Steam 代注册', subtitle: '游戏平台账号服务', icon: 'ph-steam-logo' }
+        };
+
+        function getData() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            return stored ? JSON.parse(stored) : defaultData;
+        }
+
+        function render() {
+            const data = getData();
+            let html = '';
+
+            Object.entries(categoryConfig).forEach(([key, config]) => {
+                const items = data[key] || defaultData[key] || [];
+                if (items.length === 0) return;
+
+                html += `
+                    <div class="category">
+                        <div class="category-header">
+                            <div class="category-icon ${key}">
+                                <i class="ph-fill ${config.icon}"></i>
+                            </div>
+                            <div class="category-info">
+                                <h2>${config.name}</h2>
+                                <p>${config.subtitle}</p>
+                            </div>
+                        </div>
+                        <div class="cards">
+                            ${items.map((item, index) => `
+                                <div class="card ${key}" onclick="openDetail('${key}', ${index})">
+                                    <div class="card-header">
+                                        <h3>${item.name}</h3>
+                                        ${item.hot ? '<span class="card-tag">加急</span>' : ''}
+                                    </div>
+                                    <div class="price">${item.price}</div>
+                                    <div class="note">${item.note || ''}</div>
+                                    <div class="card-arrow">
+                                        <i class="ph ph-arrow-right"></i>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('content').innerHTML = html;
+
+            const rules = data.rules || defaultData.rules || [];
+            document.getElementById('rulesGrid').innerHTML = rules.map(rule => `
+                <div class="rule-item">
+                    <div class="rule-icon"><i class="ph ph-check-circle"></i></div>
+                    <span class="rule-text">${rule}</span>
+                </div>
+            `).join('');
+
+            if (rules.length === 0) {
+                document.getElementById('rulesSection').style.display = 'none';
+            }
+        }
+
+        function openDetail(category, index) {
+            const data = getData();
+            const items = data[category] || defaultData[category] || [];
+            const item = items[index];
+            if (!item) return;
+
+            const config = categoryConfig[category];
+
+            // 填充数据
+            document.getElementById('modalCategoryBadge').className = `modal-category-badge ${category}`;
+            document.getElementById('modalCategoryIcon').className = `ph-fill ${config.icon}`;
+            document.getElementById('modalCategoryName').textContent = config.name;
+            document.getElementById('modalTitle').textContent = item.name;
+            document.getElementById('modalPrice').textContent = item.price;
+            document.getElementById('modalDesc').textContent = item.desc || item.note || '暂无详细介绍';
+
+            // 填充包含内容
+            const features = item.features || [];
+            document.getElementById('modalFeatures').innerHTML = features.length > 0
+                ? features.map(f => `
+                    <div class="modal-feature">
+                        <i class="ph ph-check-circle"></i>
+                        <span>${f}</span>
+                    </div>
+                `).join('')
+                : '<div class="modal-feature"><span>暂无内容详情</span></div>';
+
+            // 填充注意事项
+            const tips = item.tips || [];
+            document.getElementById('modalTips').innerHTML = tips.length > 0
+                ? tips.map(t => `
+                    <div class="modal-tip">
+                        <i class="ph ph-warning-circle"></i>
+                        <span>${t}</span>
+                    </div>
+                `).join('')
+                : '<div class="modal-tip"><span>暂无特别注意事项</span></div>';
+
+            // 设置头部颜色
+            document.getElementById('modalHeader').className = `modal-header ${category}`;
+
+            // 显示模态框
+            document.getElementById('detailModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function contactUs() {
+            closeModal();
+            openWechatModal();
+        }
+
+        function openWechatModal() {
+            document.getElementById('wechatModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeWechatModal() {
+            document.getElementById('wechatModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function copyWechatId() {
+            const wechatId = document.getElementById('wechatId').textContent;
+            navigator.clipboard.writeText(wechatId).then(() => {
+                showCopyToast();
+            }).catch(() => {
+                // 降级方案
+                const textarea = document.createElement('textarea');
+                textarea.value = wechatId;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showCopyToast();
+            });
+        }
+
+        function showCopyToast() {
+            const toast = document.getElementById('copyToast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // 点击遮罩关闭
+        document.getElementById('detailModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // 微信弹窗点击遮罩关闭
+        document.getElementById('wechatModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeWechatModal();
+            }
+        });
+
+        // ESC 关闭
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeWechatModal();
+            }
+        });
+
+        render();
+
+        window.addEventListener('storage', (e) => {
+            if (e.key === STORAGE_KEY) render();
+        });
+
+        window.addEventListener('focus', render);
+    </script>
+</body>
+</html>
